@@ -1,65 +1,164 @@
-#TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
-,xorg-server,"is the graphical server."
-,xorg-xwininfo,"allows querying information about windows."
-,xorg-xinit,"starts the graphical server."
-,ttf-linux-libertine,"provides the sans and serif fonts for LARBS."
-A,lf-git,"is an extensive terminal file manager that everyone likes."
-,bc,"is used for a dropdown calculator."
-,xcompmgr,"is for transparency and removing screen-tearing."
-,xorg-xprop,"is a tool for detecting window properties."
-,arandr,"allows the user to customize monitor arrangements."
-,dosfstools,"allows your computer to access dos-like filesystems."
-,libnotify,"allows desktop notifications."
-,dunst,"is a suckless notification system."
-,exfat-utils,"allows management of FAT drives."
-,sxiv,"is a minimalist image viewer."
-,xwallpaper,"sets the wallpaper."
-,ffmpeg,"can record and splice video and audio on the command line."
-,gnome-keyring,"serves as the system keyring."
-A,gtk-theme-arc-gruvbox-git,"gives the dark GTK theme used in LARBS."
-,neovim,"a tidier vim with some useful features"
-,mpd,"is a lightweight music daemon."
-,mpc,"is a terminal interface for mpd."
-,mpv,"is the patrician's choice video player."
-,man-db,"lets you read man pages of programs."
-,ncmpcpp,"a ncurses interface for music with multiple formats and a powerful tag editor."
-,newsboat,"is a terminal RSS client."
-A,brave-bin,"is an elegant browser with built-in adblocking, tor and other features."
-,noto-fonts-emoji,"is an emoji font."
-,ntfs-3g,"allows accessing NTFS partitions."
-,pipewire,"is the audio system."
-,pipewire-pulse,"gives pipewire compatibility with PulseAudio programs."
-,pulsemixer,"is an audio controller."
-,pamixer,"is a command-line audio interface."
-A,sc-im,"is an Excel-like terminal spreadsheet manager."
-,maim,"can take quick screenshots at your request."
-A,abook,"is an offline addressbook usable by neomutt."
-,unclutter,"hides an inactive mouse."
-,unrar,"extracts rar's."
-,unzip,"unzips zips."
-,lynx,"is a terminal browser."
-,xcape,"gives the special escape/super mappings of LARBS."
-,xclip,"allows for copying and pasting from the command line."
-,xdotool,"provides window action utilities on the command line."
-,xorg-xdpyinfo,"aids with resolution determination and screen recording."
-,youtube-dl,"can download any YouTube video (or playlist or channel) when given the link."
-,zathura,"is a pdf viewer with vim-like bindings."
-,zathura-pdf-mupdf,"allows mupdf pdf compatibility in zathura."
-,poppler,"manipulates .pdfs and gives .pdf previews and other .pdf functions."
-,mediainfo,"shows audio and video information."
-,atool,"manages and gives information about archives."
-,fzf,"is a fuzzy finder tool."
-,highlight,"can highlight code output."
-,xorg-xbacklight,"enables changing screen brightness levels."
-A,zsh-fast-syntax-highlighting-git,"provides syntax highlighting in the shell."
-A,task-spooler,"queues commands or files for download."
-A,simple-mtpfs,"enables the mounting of cell phones."
-A,htop-vim-git,"is a graphical and colorful system monitor."
-G,https://github.com/LukeSmithxyz/dwmblocks.git,"serves as the modular status bar."
-G,https://github.com/lukesmithxyz/dmenu.git,"runs commands and provides a UI for selection."
-G,https://github.com/lukesmithxyz/st.git,"is my custom build of suckless's terminal emulator."
-G,https://github.com/lukesmithxyz/dwm.git,"is the window manager."
-A,mutt-wizard-git,"is a light-weight terminal-based email system."
-,slock,"allows you to lock your computer, and quickly unlock with your password."
-,socat,"is a utility which establishes two byte streams and transfers data between them."
-,moreutils,"is a collection of useful unix tools."
+# Drivers
+,xf86-video-amdgpu,X.org amdgpu video driver.
+,amd-ucode,microcode update image for AMD CPUs (just in case).
+,sof-firmware,sound open firmware.
+#,intel-ucode,microcode update files for Intel CPUs (just in case).
+
+# Shell & Plug-ins
+,dash,
+,zsh,a very advanced and programmable command interpreter (shell) for UNIX.
+,zsh-syntax-highlighting,fish shell like syntax highlighting for Zsh.
+,zsh-completion,additional completion definitions for Zsh.
+,zsh-autosuggestions,fish-like autosuggestions for zsh.
+A,zsh-git-prompt,informative git prompt for zsh.
+
+# Display Server & Compositors
+,xorg-server,Xorg X server.
+,xorg-xinit,X.Org initialisation program.
+,xorg-apps,utility apps for Xorg.
+#,xsel,a command-line program for getting and setting the contents of the X selection.
+#,picom,X compositor that may fix tearing issues.
+
+# DM & Tweaks
+,lightdm,A lightweight display manager.
+,lightdm-gtk-greeter,Pantheon greeter for LightDM.
+,lightdm-gkt-greeter-settings,Settings editor for the LightDM GTK+ Greeter.
+A,xinit-xsession,Allows ~/.xinitrc to be run as a session from your display manager.
+
+# Window Managers/Desktop Enviroment
+G,https://gitlab.com/aeth_/dwm.git,custom build of the suckless dynamic widnow manager.
+G,https://gitlab.com/aeth_/dwmblocks.git,statusbar for dwm.
+#,exo,Application library for Xfce. 
+#,garcon,Implementation of the freedesktop.org menu specification. 
+#,xfce4-appfinder,An application finder for Xfce. 
+#,xfce4-panel,Panel for the Xfce desktop environment. 
+#,xfce4-power-manager,Power manager for the Xfce desktop. 
+#,xfce4-session,Session manager for Xfce. 
+#,xfce4-settings,Settings manager of the Xfce desktop. 
+#,xfconf,easy-to-use configuration management system. 
+#,xfdesktop,A desktop manager for Xfce. 
+#,xfwm4,Xfce's window manager. 
+#,xfce4-whiskermenu-plugin,a menu for xfce.
+
+# Terminal
+,alacritty,A cross-platform,GPU-accelerated terminal emulator.
+# G,https://gitlab.com/aeth_/st-aeth.git,suckless simple terminal.
+
+# File Management
+,gvfs,virtual filesystem implementation for GIO
+#,ntfs-3g,allows access to NTFS partitions.
+#,udisks2,the disk management service.
+A,simple-mtpfs,a FUSE filesystem that supports reading and writing from MTP device.
+,trash-cli,command line trashcan (recycle bin) interface.
+,ranger,simple, vim-like file manager.
+,thunar,Modern file manager for Xfce. 
+,thunar-volman,Automatic management of removeable devices in Thunar. 
+,tumbler,D-Bus service for applications to request thumbnails. ,modern file manager for Xfce.
+,thunar-archive-plugin,Create and extract archives in Thunar.
+,thunar-media-tags-plugin,Adds special features for media files to the Thunar File Manager,
+,gzip,the GNU compression utility.
+
+# Application Launcher
+G,https://gitlab.com/aeth_/dmenu.git,dynamic menu for X.
+
+# Themeing
+,lxappearance,Feature-rich GTK+ theme switcher of the LXDE Desktop.
+,qt5ct,Qt5 Configuration Utility.
+A,gruvbox-material-gtk-theme-git,gruvbox dark theme.
+,capitaine-cursors,simple cursor theme.
+,papirus-icon-theme-git,papirus icon theme.
+A,papirus-folders-git,a script that changes papirus folders color.
+
+# Virtualization
+,qemu,A generic and open source machine emulator and virtualizer
+,virt-manager,Desktop user interface for managing virtual machines
+,ebtables,Linux kernel packet control tool (using nft interface)
+,dnsmasq,Lightweight and easy to configure DNS forwarder and DHCP server
+
+# Fonts
+,ttf-linux-liberine,serif (Libertine) and Sans Serif (Biolinum) OpenType fonts with large Unicode coverage.
+,noto-fonts,google Noto TTF fonts.
+,terminus-font,monospace bitmap font (for X11 and console).
+,ttf-ibm-plex,Google IBM Plex TTF font.
+,ttf-fira-code,Monospaced font with programming ligatures.
+A,ttf-material-design-icons-extended,An extended Material Design icons font by the guys over at materialdesignicons.com.
+,ttf-joypixels,emoji as a Service (formerly EmojiOne).
+
+# Shell & Plug-ins
+,zsh,a very advanced and programmable command interpreter (shell) for UNIX.
+,zsh-syntax-highlighting,fish shell like syntax highlighting for Zsh.
+,zsh-completion,additional completion definitions for Zsh.
+,zsh-autosuggestions,fish-like autosuggestions for zsh.
+A,zsh-git-prompt,informative git prompt for zsh.
+
+# Terminal
+,alacritty,A cross-platform,GPU-accelerated terminal emulator.
+
+# Editor
+,neovim,fork of Vim aiming to improve user experience.
+,geany,fast and lightweight IDE.
+
+# Sound
+,alsa-utils,advanced Linux Sound Architecture - Utilities.
+,alsa-firmware,firmware binaries for loader programs in alsa-tools and hotplug firmware loader.
+,alsa-lib,an alternative implementation of Linux sound support.
+.pipewire,low-latency audio/video router and processor.
+,pipewire-alsa,pipewire ALSA configuration.
+,pipewire-pulse,pipewire PULSE configuration.
+,pipewire-jack,pipewire JACK configuration.
+,carla,an audio plugin host.
+,pulsemixer,cli and curses mixer.
+
+# Audio Players and Codecs
+,libmad,a high-quality MPEG audio decoder.
+,lame,a high quality MPEG Audio Layer III (MP3) encoder.
+,mpv,a free, open source, and cross-platform media player.
+,mpd,a flexible, powerful, server-side application for playing music.
+,mpc,a minimalist command line interface to MPD.
+#,xdg-desktop-portal-gtk,a GTK+ backend for xdg-desktop-portal.
+,cmus,feature-rich ncurses-based music player.
+P,castero,a TUI podcast client for the terminal.
+
+# Images
+,imagemagick,an image viewing/manipulation program.
+,gimp,GNU Image Manipulation Program.
+P,ueberzug,renders image previews inside terminals.
+,feh,a fast and light imlib2-based image viewer.
+A,nsxiv,a simple X Image Viewer.
+,ristretto,
+A,gallery-dl,
+
+# Browsers
+,firefox,standalone web browser from mozilla.org.
+,lynx,a text browser for the World Wide Web.
+,torbrowser-launcher,Securely and easily launch Tor Browser in Linux
+
+# Communication
+,thunderbird,standalone mail and news reader from mozilla.org.
+A,telegram-tg,a TUI telegram client.
+,element-desktop,
+
+# Utilities
+,cpupower,Linux kernel tool to examine and tune power saving related features of your processor
+A,htop-vim-git,a TUI system monitor.
+,snapper,a tool for managing BTRFS and LVM snapshots.
+,youtube-dl,a command-line program to download videos from YouTube.com and a few more sites.
+P,bandcamp-downloader,a module that can download tracks and albums from bandcamp.com.
+P,moodle-dl,a Moodle downloader that downloads course content fast from Moodle.
+,nicotine+,soulseek music-sharing client written in python.
+#,kdeconnect,adds communication between KDE and your smartphone.
+A,hakuneko-desktop,manga & anime downloader.
+,newsboat,a TUI RSS client.
+,mediainfo,supplies technical and tag information about a video or audio file (CLI interface).
+#,slock,a simple screen locker for X.
+,transmission-cli,free BitTorrent client
+,libolm,
+
+# Documents
+,zathura,a minimalistic document viewer.
+,zathura-pdf-mupdf,PDF support for Zathura.
+
+# Bloat
+,bat,cat clone with syntax highlighting and git integration.
+#,cmatrix,a curses-based scrolling Matrix-like screen.
+,libxft-bgra,enables color emoji in suckless software
