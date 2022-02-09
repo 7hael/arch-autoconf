@@ -233,7 +233,14 @@ loginconf() {
 	cursor-theme-name = capitaine-cursors-light
 	default-user-image = /usr/share/pixmaps/face.png
 	xft-antialias = true" >> /etc/lightdm/lightdm-gtk-greeter.conf
-	systemctl enable lightdm
+	case "$(readlink -f /sbin/init)" in
+		*systemd* )
+			systemctl enable lightdm 
+			;;
+		*)
+			# TODO
+			;;
+	esac ;
 }
 
 alsaconfig()
@@ -322,7 +329,7 @@ xorgconf || error "Error configuring xorg"
 # This line, overwriting the `newperms` command above will allow the user to run
 # serveral important commands, `shutdown`, `reboot`, updating, etc. without a password.
 newperms "%wheel ALL=(ALL) ALL #a-ac
-%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/mount,/usr/bin/umount,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/loadkeys"
+%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/loadkeys,/usr/bin/paru"
 
 # the end
 finalize
