@@ -45,8 +45,3 @@ The script is extensively divided into functions for easier readability and trou
 The main work is done by the `installationloop` function, which iterates through the programs file and determines based on the tag of each program, which commands to run to install it. You can easily add new methods of installations and tags as well.
 
 Note that programs from the AUR can only be built by a non-root user. What the script does to bypass this by default is to temporarily allow the newly created user to use `sudo` without a password (so the user won't be prompted for a password multiple times in installation). This is done ad-hocly, but effectively with the `newperms` function. At the end of installation, `newperms` removes those settings, giving the user the ability to run only several basic sudo commands without a password (`shutdown`, `reboot`, ecc.).
-
-### TODO
-- fix cursor theme
-- describe default enviroment in README.md
-- configure tg with a pass wizard
