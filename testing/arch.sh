@@ -1,19 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
 #This is a lazy script I have for auto-installing Arch.
-#It's not officially part of LARBS, but I use it for testing.
 #DO NOT RUN THIS YOURSELF because Step 1 is it reformatting /dev/sda WITHOUT confirmation,
 #which means RIP in peace qq your data unless you've already backed up all of your drive.
 
-pacman -Sy --noconfirm dialog || { echo "Error at script start: Are you sure you're running this as the root user? Are you sure you have an internet connection?"; exit; }
+timedatectl set-ntp true
+pacman -S --noconfirm archlinux-keyring
+sed -i 's/^#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+pacman -S --noconfirm --needed reflector rsync grub
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 
-dialog --defaultno --title "DON'T BE A BRAINLET!" --yesno "This is an Arch install script that is very rough around the edges.\n\nOnly run this script if you're a big-brane who doesn't mind deleting your entire /dev/sda drive.\n\nThis script is only really for me so I can autoinstall Arch.\n\nt. Luke"  15 60 || exit
-
-dialog --defaultno --title "DON'T BE A BRAINLET!" --yesno "Do you think I'm meming? Only select yes to DELET your entire /dev/sda and reinstall Arch.\n\nTo stop this script, press no."  10 60 || exit
-
-dialog --no-cancel --inputbox "Enter a name for your computer." 10 60 2> comp
-
-dialog --defaultno --title "Time Zone select" --yesno "Do you want use the default time zone(America/New_York)?.\n\nPress no for select your own time zone"  10 60 && echo "America/New_York" > tz.tmp || tzselect > tz.tmp
+umount -A --recursive /mnt # make sure everything is unmounted before we start
 
 dialog --no-cancel --inputbox "Enter partitionsize in gb, separated by space (swap & root)." 10 60 2>psize
 
@@ -51,20 +48,79 @@ w
 EOF
 partprobe
 
-yes | mkfs.ext4 /dev/sda4
-yes | mkfs.ext4 /dev/sda3
-yes | mkfs.ext4 /dev/sda1
-mkswap /dev/sda2
-swapon /dev/sda2
-mount /dev/sda3 /mnt
-mkdir -p /mnt/boot
-mount /dev/sda1 /mnt/boot
-mkdir -p /mnt/home
-mount /dev/sda4 /mnt/home
+createsubvolumes () {
+    btrfs subvolume create /mnt/@
+    btrfs subvolume create /mnt/@home
+    btrfs subvolume create /mnt/@var
+    btrfs subvolume create /mnt/@tmp
+    btrfs subvolume create /mnt/@.snapshots
+}
 
-pacman -Sy --noconfirm archlinux-keyring
+mountallsubvol () {
+    mount -o ${MOUNT_OPTIONS},subvol=@home ${partition3} /mnt/home
+    mount -o ${MOUNT_OPTIONS},subvol=@tmp ${partition3} /mnt/tmp
+    mount -o ${MOUNT_OPTIONS},subvol=@var ${partition3} /mnt/var
+    mount -o ${MOUNT_OPTIONS},subvol=@.snapshots ${partition3} /mnt/.snapshots
+}
 
-pacstrap /mnt base base-devel
+subvolumesetup () {
+# create nonroot subvolumes
+    createsubvolumes     
+# unmount root to remount with subvolume 
+    umount /mnt
+# mount @ subvolume
+    mount -o ${MOUNT_OPTIONS},subvol=@ ${partition3} /mnt
+# make directories home, .snapshots, var, tmp
+    mkdir -p /mnt/{home,var,tmp,.snapshots}
+# mount subvolumes
+    mountallsubvol
+}
+
+if [[ "${DISK}" =~ "nvme" ]]; then
+    partition2=${DISK}p2
+    partition3=${DISK}p3
+else
+    partition2=${DISK}2
+    partition3=${DISK}3
+fi
+
+if [[ "${FS}" == "btrfs" ]]; then
+    mkfs.vfat -F32 -n "EFIBOOT" ${partition2}
+    mkfs.btrfs -L ROOT ${partition3} -f
+    mount -t btrfs ${partition3} /mnt
+    subvolumesetup
+elif [[ "${FS}" == "ext4" ]]; then
+    mkfs.vfat -F32 -n "EFIBOOT" ${partition2}
+    mkfs.ext4 -L ROOT ${partition3}
+    mount -t ext4 ${partition3} /mnt
+elif [[ "${FS}" == "luks" ]]; then
+    mkfs.vfat -F32 -n "EFIBOOT" ${partition2}
+# enter luks password to cryptsetup and format root partition
+    echo -n "${LUKS_PASSWORD}" | cryptsetup -y -v luksFormat ${partition3} -
+# open luks container and ROOT will be place holder 
+    echo -n "${LUKS_PASSWORD}" | cryptsetup open ${partition3} ROOT -
+# now format that container
+    mkfs.btrfs -L ROOT ${partition3}
+# create subvolumes for btrfs
+    mount -t btrfs ${partition3} /mnt
+    subvolumesetup
+# store uuid of encrypted partition for grub
+    echo ENCRYPTED_PARTITION_UUID=$(blkid -s UUID -o value ${partition3}) >> $CONFIGS_DIR/setup.conf
+fi
+
+# mount target
+mkdir -p /mnt/boot/efi
+mount -t vfat -L EFIBOOT /mnt/boot/
+
+if ! grep -qs '/mnt' /proc/mounts; then
+    echo "Drive is not mounted can not continue"
+    echo "Rebooting in 3 Seconds ..." && sleep 1
+    echo "Rebooting in 2 Seconds ..." && sleep 1
+    echo "Rebooting in 1 Second ..." && sleep 1
+    reboot now
+fi
+
+pacstrap /mnt base base-devel linux-zen linux-firmware archlinux-keyring wget libnewt neovim --noconfirm --needed
 
 genfstab -U /mnt >> /mnt/etc/fstab
 cat tz.tmp > /mnt/tzfinal.tmp
