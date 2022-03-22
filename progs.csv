@@ -153,6 +153,7 @@ A,hakuneko-desktop,manga & anime downloader.
 #,slock,a simple screen locker for X.
 ,transmission-cli,free BitTorrent client
 ,libolm,
+A,ytfzf,
 
 # Documents
 ,zathura,a minimalistic document viewer.
