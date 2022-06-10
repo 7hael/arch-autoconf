@@ -96,6 +96,8 @@ A,zsh-git-prompt,informative git prompt for zsh.
 
 # Editor
 ,neovim,fork of Vim aiming to improve user experience.
+A,neovim-visual-multi,
+A,neovim-ctrlp,
 ,geany,fast and lightweight IDE.
 
 # Sound
