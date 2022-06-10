@@ -21,7 +21,8 @@ esac done
 [ -z "$lightdmwall" ] && lightdmwall="https://gitlab.com/aeth_/dotfiles/-/raw/master/.local/share/backgrounds/bierstadt_1-a_storm_in_the_rocky_mountains.jpg"
 [ -z "$face" ] && face="https://gitlab.com/aeth_/dotfiles/-/raw/master/.local/share/icons/face.png"
 
-notint_re='[^0-9]+'
+notint_regex='[^0-9]+'
+
 ### FUNCTIONS ###
 
 installpkg(){ pacman --noconfirm --needed -S "$1" >/dev/null 2>&1 ;}
@@ -65,7 +66,7 @@ usercheck() {
 adjustmakeflags() {
 	printf "Enter the number of cores to use in compilation (from 1 to %d):" "$(nproc)"
 	read nproc
-	while [ -n "$(echo $nproc | grep -E "$notint_re")" ] || [ $nproc -lt 1 ] || [ $nproc -gt $(nproc) ]; do 
+	while [ -n "$(echo $nproc | grep -E "$notint_regex")" ] || [ $nproc -lt 1 ] || [ $nproc -gt $(nproc) ]; do 
 		printf "Invalid argument. It must be a number betweem 1 and %d:" "$(nproc)"
 		read nproc
 	done
@@ -122,8 +123,8 @@ Include = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
 }
 
 newperms() { # Set special sudoers settings for install (or after).
-	sed -i "/#a-ac/d" /etc/sudoers
-	echo "$* #a-ac" >> /etc/sudoers ;
+	sed -i "/#aac/d" /etc/sudoers
+	echo "$* #aac" >> /etc/sudoers ;
 }
 
 manualinstall() { # Installs $1 manually. Used only for AUR helper here.
@@ -224,7 +225,7 @@ systembeepoff() {
 loginconf() {
 	([ -f "$lightdmwall" ] && cp "$lightdmwall" /usr/share/pixmaps/lightdm-bg.jpg) || curl -Ls "$lightdmwall" > /usr/share/pixmaps/lightdm-bg.jpg
 	([ -f "$face" ] && cp "$face" /usr/share/pixmaps/face.png) || curl -Ls "$face" > /usr/share/pixmaps/face.png
-	printf "# a-ac
+	printf "# aac
 	theme-name = Gruvbox-Material-Dark
 	icon-theme-name = Papirus-Dark
 	background = /usr/share/pixmaps/lightdm-bg.jpg
@@ -250,7 +251,7 @@ alsaconfig()
 	printf "Enter card number:"
 	read cardnum
 	maxcardnum=$(aplay -l | uniq | grep card | tail -1 | awk '{print $2}' | sed 's/:*$//')
-	while [ -n "$(echo $cardnum | grep -E "$notint_re")" ] || [ $cardnum -lt 0 ] || [ $cardnum -gt $maxcardnum ]; do
+	while [ -n "$(echo $cardnum | grep -E "$notint_regex")" ] || [ $cardnum -lt 0 ] || [ $cardnum -gt $maxcardnum ]; do
 		printf "Invalid argument. It must be a number betweem 0 and %d:" "$maxcardnum"
 		read cardnum
 	done
@@ -328,7 +329,7 @@ xorgconf || error "Error configuring xorg"
 
 # This line, overwriting the `newperms` command above will allow the user to run
 # serveral important commands, `shutdown`, `reboot`, updating, etc. without a password.
-newperms "%wheel ALL=(ALL) ALL #a-ac
+newperms "%wheel ALL=(ALL) ALL #aac
 %wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/systemctl restart NetworkManager,/usr/bin/rc-service NetworkManager restart,/usr/bin/loadkeys,/usr/bin/paru"
 
 # the end
