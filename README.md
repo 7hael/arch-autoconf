@@ -28,11 +28,10 @@ By default, arch-autoconf uses the programs [here in progs.csv](progs.csv) and i
 
 The script will parse the given programs list and install all of them. Note that the programs file must be a three column `.csv`.
 
-The first column is a "tag" that determines how the program is installed, "" (blank) for the main repository, `A` for via the AUR, `G` if the program is a git repository that is meant to be `make && sudo make install`ed or `P` if the package needs to be installed via pip.
+The first column is a "tag" that determines how the program is installed, "" (blank) for the main repository, `A` for via the AUR, `G` if the program is a git repository that is meant to be installed with `make && sudo make install`, or `P` if the package needs to be installed via pip.
 
-The second column is the name of the program in the repository, or the link to the git repository, and the third column is a description that describes the program. 
+The second column is the name of the program in the repository, or the link to the git repository, and the third column is a description of the program. 
 During installation, the script will print out this information in a grammatical sentence. 
-It also doubles as documentation for people who read the CSV and want to install my dotfiles manually.
 
 Depending on your own build, you may want to tactically order the programs in your programs file. arch-autoconf will install from the top to the bottom.
 
