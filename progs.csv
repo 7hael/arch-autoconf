@@ -125,10 +125,10 @@ A,zsh-git-prompt,informative git prompt for zsh.
 # Editor #
 ##########
 ,neovim,fork of Vim aiming to improve user experience.
-A,neovim-plug,plug-in manager for neovim
-A,neovim-visual-multi,multiple cursor plugin for neovim
-A,neovim-ctrlp,Full path fuzzy file finder
-,geany,fast and lightweight IDE.
+A,neovim-plug,plug-in manager for neovim.
+A,neovim-visual-multi,multiple cursor plugin for neovim.
+A,neovim-ctrlp,Full path fuzzy file finder.
+A,lite-xl,A lightweight text Editor.
 
 #########
 # Sound #
