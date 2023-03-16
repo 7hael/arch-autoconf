@@ -213,6 +213,8 @@ xorgconf() {
 	    Driver "libinput"
 		# Enable left mouse button by tapping
 		Option "Tapping" "on"
+		Option "NaturalScrolling" "true"
+		Option "AccelSpeed" "1.0"
 	EndSection' > /etc/X11/xorg.conf.d/40-libinput.conf
 }
 
