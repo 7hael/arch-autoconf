@@ -24,6 +24,10 @@ A,zsh-git-prompt,informative git prompt for zsh.
 ,xorg-apps,utility apps for Xorg.
 ,xsel,a command-line program for getting and setting the contents of the X selection.
 ,picom,X compositor that may fix tearing issues.
+,hyprland,a highly customizable dynamic tiling Wayland compositor.
+A,wlroots-git,Modular Wayland compositor library (git version).
+A,hyprpaper-git,A blazing fast wayland wallpaper utility with IPC controls.
+A,waybar-hyprland-git,Wayland bar for Wlroots based compositors with workspaces support for Hyprland
 
 ###############
 # DM & Tweaks #
@@ -33,6 +37,7 @@ A,zsh-git-prompt,informative git prompt for zsh.
 ,lightdm-gkt-greeter-settings,Settings editor for the LightDM GTK+ Greeter.
 A,xinit-xsession,Allows ~/.xinitrc to be run as a session from your display manager.
 ,brightnessctl,Lightweight brightness control tool.
+A,brillo,Control the brightness of backlight and keyboard LED devices.
 
 ######################################
 # Window Managers/Desktop Enviroment #
