@@ -38,6 +38,10 @@ A,xinit-xsession,Allows ~/.xinitrc to be run as a session from your display mana
 ######################################
 G,https://gitlab.com/aeth_/dwm.git,custom build of the suckless dynamic widnow manager.
 G,https://gitlab.com/aeth_/dwmblocks.git,statusbar for dwm.
+,hyprland,A highly customizable dynamic tiling Wayland compositor.
+,wl-clipboard,Command-line copy/paste utilities for Wayland.
+,wofi,Launcher for wlroots-based wayland compositors.
+A,waybar-hyprland-git,Highly customizable Wayland bar for wlroots based compositors.
 # ,exo,Application library for Xfce. 
 # ,garcon,Implementation of the freedesktop.org menu specification. 
 # ,xfce4-appfinder,An application finder for Xfce. 
