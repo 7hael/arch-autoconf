@@ -32,6 +32,8 @@ A,zsh-git-prompt,informative git prompt for zsh.
 ,lightdm-gtk-greeter,Pantheon greeter for LightDM.
 ,lightdm-gkt-greeter-settings,Settings editor for the LightDM GTK+ Greeter.
 A,xinit-xsession,Allows ~/.xinitrc to be run as a session from your display manager.
+,brightnessctl,Lightweight brightness control tool.
+A,brillo,Control the brightness of backlight and keyboard LED devices.
 
 ######################################
 # Window Managers/Desktop Enviroment #
@@ -39,9 +41,9 @@ A,xinit-xsession,Allows ~/.xinitrc to be run as a session from your display mana
 G,https://gitlab.com/aeth_/dwm.git,custom build of the suckless dynamic widnow manager.
 G,https://gitlab.com/aeth_/dwmblocks.git,statusbar for dwm.
 ,hyprland,A highly customizable dynamic tiling Wayland compositor.
-,wl-clipboard,Command-line copy/paste utilities for Wayland.
-,wofi,Launcher for wlroots-based wayland compositors.
-A,waybar-hyprland-git,Highly customizable Wayland bar for wlroots based compositors.
+A,wlroots-git,Modular Wayland compositor library (git version).
+A,hyprpaper-git,A blazing fast wayland wallpaper utility with IPC controls.
+A,waybar-hyprland-git,Highly customizable Wayland bar for wlroots based compositors with Hyprland support.
 # ,exo,Application library for Xfce. 
 # ,garcon,Implementation of the freedesktop.org menu specification. 
 # ,xfce4-appfinder,An application finder for Xfce. 
@@ -53,6 +55,8 @@ A,waybar-hyprland-git,Highly customizable Wayland bar for wlroots based composit
 # ,xfdesktop,A desktop manager for Xfce. 
 # ,xfwm4,Xfce's window manager. 
 # ,xfce4-whiskermenu-plugin,a menu for xfce.
+,lxsession,Lightweight X11 session manager.
+,dunst,Customizable and lightweight notification-daemon.
 
 ############
 # Terminal #
@@ -80,6 +84,8 @@ A,simple-mtpfs,a FUSE filesystem that supports reading and writing from MTP devi
 # Application Launcher #
 ########################
 G,https://gitlab.com/aeth_/dmenu.git,dynamic menu for X.
+,wofi,Launcher for wlroots-based wayland compositors.
+,bemenu,Dynamic menu library and client program inspired by dmenu.
 
 ############
 # Themeing #
@@ -119,11 +125,6 @@ A,ttf-material-design-icons-extended,An extended Material Design icons font by t
 ,zsh-completion,additional completion definitions for Zsh.
 ,zsh-autosuggestions,fish-like autosuggestions for zsh.
 A,zsh-git-prompt,informative git prompt for zsh.
-
-############
-# Terminal #
-############
-,alacritty,A cross-platform,GPU-accelerated terminal emulator.
 
 ##########
 # Editor #
@@ -201,6 +202,13 @@ P,moodle-dl,a Moodle downloader that downloads course content fast from Moodle.
 ,transmission-cli,free BitTorrent client.
 ,libolm,Implementation of the Olm and Megolm cryptographic ratchets.
 A,ytfzf,A POSIX script to find and watch youtube videos from the terminal.
+,upower,Abstraction for enumerating power devices, listening to device events and querying history and statistics.
+,samba,SMB Fileserver and AD Domain server.
+,smbclient,Tools to access a server's filespace and printers via SMB.
+,ripgrep,A search tool that combines the usability of ag with the raw speed of grep.
+,fd,Simple, fast and user-friendly alternative to find.
+,pass,Stores, retrieves, generates, and synchronizes passwords securely.
+,wl-clipboard,Command-line copy/paste utilities for Wayland.
 
 #############
 # Documents #
