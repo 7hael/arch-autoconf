@@ -43,7 +43,7 @@ G,https://gitlab.com/aeth_/dwmblocks.git,statusbar for dwm.
 ,hyprland,A highly customizable dynamic tiling Wayland compositor.
 A,wlroots-git,Modular Wayland compositor library (git version).
 A,hyprpaper-git,A blazing fast wayland wallpaper utility with IPC controls.
-A,waybar-hyprland-git,Highly customizable Wayland bar for wlroots based compositors with Hyprland support.
+,waybar,Highly customizable Wayland bar for wlroots based compositors.
 # ,exo,Application library for Xfce. 
 # ,garcon,Implementation of the freedesktop.org menu specification. 
 # ,xfce4-appfinder,An application finder for Xfce. 
